@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "version": "2025-10-05",
+    "units": "W_per_m2",
+    "notes": "Values normalized to area; galley/ECLSS also list equipment for more exact billing when counts are known.",
+    "sources": {
+      "cq_electronics_2009": "Ullrich et al., Assessment of the Crew Quarter on the ISS Node 2 (NASA/2009) – ~153 W electronics waste heat per CQ.",
+      "bvad_2023_food": "NASA Baseline Values and Assumptions Document (BVAD v3.x), Tables 4.3.2–4.3.3 – refrigeration/freezer power 0.048–0.268 kW.",
+      "ispr_dims_esa": "ESA ISS User Guide – ISPR footprint 1.044 m × 0.882 m (~0.921 m²).",
+      "oga_ices2019": "ICES 2019 paper on ISS OGA – OGA rack power capability ~3.8–4.0 kW.",
+      "shuttle_food_1974": "Shuttle Food System (1974) – microwave oven ~1.8 kW (example of peak galley appliance)."
+    }
+  },
+  "functions": {
+    "sleep": {
+      "nominal_w_per_m2": 51,
+      "peak_w_per_m2": 80,
+      "confidence": "sourced",
+      "basis": "153 W electronics heat per CQ / 3.0 m² default area",
+      "source_ids": ["cq_electronics_2009"]
+    },
+    "galley": {
+      "nominal_w_per_m2": 104,
+      "peak_w_per_m2": 291,
+      "confidence": "sourced",
+      "basis": "BVAD refrigerator/freezer power normalized by ISPR footprint (0.921 m²)",
+      "source_ids": ["bvad_2023_food", "ispr_dims_esa"],
+      "equipment": [
+        {
+          "name": "Refrigerator/Freezer (ISPR)",
+          "watts_nominal": 96,
+          "watts_high": 268,
+          "count_hint": "≈1 ISPR per 4 crew",
+          "source_ids": ["bvad_2023_food"]
+        },
+        {
+          "name": "Microwave / Food Warmer",
+          "watts_peak": 1800,
+          "duty_cycle": 0.05,
+          "note": "Short bursts; include only if present.",
+          "source_ids": ["shuttle_food_1974"]
+        }
+      ]
+    },
+    "dining": {
+      "nominal_w_per_m2": 10,
+      "peak_w_per_m2": 20,
+      "confidence": "estimate",
+      "basis": "lighting + fans only; no fixed appliances"
+    },
+    "hygiene": {
+      "nominal_w_per_m2": 25,
+      "peak_w_per_m2": 80,
+      "confidence": "estimate",
+      "basis": "lighting, fans; heaters/pumps added as explicit equipment if modeled"
+    },
+    "exercise": {
+      "nominal_w_per_m2": 30,
+      "peak_w_per_m2": 150,
+      "confidence": "estimate",
+      "basis": "fans/vacuum/pads; large devices should be modeled as equipment"
+    },
+    "medical": {
+      "nominal_w_per_m2": 80,
+      "peak_w_per_m2": 300,
+      "confidence": "estimate",
+      "basis": "benchtop diagnostics/IT; spikes for imaging/sterilization if present"
+    },
+    "work": {
+      "nominal_w_per_m2": 50,
+      "peak_w_per_m2": 120,
+      "confidence": "estimate",
+      "basis": "1–2 laptops/monitors + task lighting per ~2 m²"
+    },
+    "eclss": {
+      "nominal_w_per_m2": 2590,
+      "peak_w_per_m2": 4130,
+      "confidence": "mixed",
+      "basis": "OGA (~3.8–4.0 kW) + CO2 scrubber (~1.0 kW class) across two ISPRs (1.842 m² total). Peak ~OGA-only per ISPR.",
+      "source_ids": ["oga_ices2019", "ispr_dims_esa"],
+      "equipment": [
+        {
+          "name": "Oxygen Generation Assembly (OGA, ISPR)",
+          "watts_peak": 3955,
+          "duty_cycle": 0.6,
+          "source_ids": ["oga_ices2019"]
+        },
+        {
+          "name": "Four-Bed CO2 Scrubber (ISPR)",
+          "watts_nominal": 975,
+          "duty_cycle": 0.8,
+          "source_ids": []
+        }
+      ]
+    },
+    "stowage": {
+      "nominal_w_per_m2": 0,
+      "peak_w_per_m2": 5,
+      "confidence": "estimate",
+      "basis": "no active loads aside from local lighting"
+    },
+    "airlock": {
+      "nominal_w_per_m2": 10,
+      "peak_w_per_m2": 50,
+      "confidence": "estimate",
+      "basis": "sensors/lighting; pumps are event-based and should be modeled as equipment when used"
+    }
+  }
+}

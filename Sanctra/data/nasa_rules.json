@@ -1,0 +1,12 @@
+{
+  "sleep": {"name": "Crew Sleep", "volume_m3_per_crew": 3.64, "area_m2_per_crew": 1.82, "category": "Habitation"},
+  "hygiene": {"name": "Hygiene", "volume_m3_per_crew": 2.54, "area_m2_per_crew": 1.06, "category": "Habitation"},
+  "galley": {"name": "Galley & Food Prep", "volume_m3_per_crew": 1.35, "area_m2_per_crew": 0.56, "category": "Habitation"},
+  "dining": {"name": "Meal Consumption", "volume_m3_per_crew": 3.89, "area_m2_per_crew": 1.62, "category": "Habitation"},
+  "exercise": {"name": "Exercise", "volume_m3_per_crew": 3.60, "area_m2_per_crew": 1.50, "category": "Health"},
+  "medical": {"name": "Medical Ops", "volume_m3_per_crew": 2.68, "area_m2_per_crew": 1.12, "category": "Health"},
+  "work": {"name": "Workstations / Mission Planning", "volume_m3_per_crew": 3.28, "area_m2_per_crew": 1.37, "category": "Operations"},
+  "eclss": {"name": "ECLSS / Systems Bay", "volume_m3_per_crew": 1.20, "area_m2_per_crew": 0.50, "category": "Systems"},
+  "stowage": {"name": "Logistics & Storage", "volume_m3_per_crew": 2.00, "area_m2_per_crew": 0.80, "category": "Systems"},
+  "airlock": {"name": "Airlock / Suitport", "volume_m3_per_crew": 2.20, "area_m2_per_crew": 0.90, "category": "Operations"}
+}
